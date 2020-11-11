@@ -1,5 +1,5 @@
 import numpy as np
-import pandas as pd
+from numba import jit, cuda
 import matplotlib.pyplot as plt
 
 def sigmoid(x):
@@ -68,6 +68,7 @@ class Network:
 
         return self.activations[-1]
 
+    # @jit(target="cuda")
     def train(self, inputs, outputs, epochs, eta, adaptive_lr=False):
 
         loss = []
@@ -94,6 +95,7 @@ class Network:
         plt.plot(x, loss)
         plt.show()
 
+    # @jit(target="cuda")
     def back_propagate(self, error):
         for i in reversed(range(len(self.derivatives))):
             output = self.activations[i + 1]
@@ -109,15 +111,18 @@ class Network:
             error = np.dot(self.deltas[i], self.weights[i].T)
             error = error.reshape(error.shape[1])
 
+    # @jit(target="cuda")
     def update_weights(self, eta):
 
         for i in range(len(self.weights)):
             self.weights[i] += eta * self.derivatives[i]
             self.biases[i] += eta * self.deltas[i].reshape(self.biases[i].shape)
 
+    # @jit(target="cuda")
     def mean_square_error(self, expected, predicted_output):
         return np.average((expected - predicted_output) ** 2)
 
+    # @jit(target="cuda")
     def exp_decay(self, epoch, eta):
         k = 0.001
         x = np.exp(-k * epoch)
