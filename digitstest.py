@@ -29,5 +29,6 @@ outputs = []
 # new_input = np.zeros(10)
 for inp in range(len(input_numbers)):
     # new_input[inp] = 1
-    outputs.append(ae.predict(input_numbers[inp]))
+    encoded_input = ae.encode(input_numbers[inp])
+    outputs.append(ae.decode(encoded_input))
     # new_input[inp] = 0

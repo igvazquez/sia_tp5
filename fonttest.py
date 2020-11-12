@@ -26,4 +26,5 @@ ae.train(np.asarray(input_numbers), np.asarray(output_numbers), 10000, 0.5, True
 
 outputs = []
 for inp in range(len(input_numbers)):
-    outputs.append(ae.predict(input_numbers[inp]))
+    encoded_input = ae.encode(input_numbers[inp])
+    outputs.append(ae.decode(encoded_input))
