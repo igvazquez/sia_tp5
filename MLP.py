@@ -1,15 +1,16 @@
 import numpy as np
-from numba import jit, cuda
+
 import matplotlib.pyplot as plt
 
-def sigmoid(x):
+
+def sigmoid(x, beta):
     # return 1.0 / (1 + np.exp(-x))
-    return np.tanh(x)
+    return np.tanh(beta * x)
 
 
-def sigmoid_derivative(x):
+def sigmoid_derivative(x, beta):
     # return x * (1 - x)
-    return 1 - np.tanh(x) * np.tanh(x)
+    return beta * (1 - np.power(x, 2))
 
 
 class Network:
@@ -18,11 +19,11 @@ class Network:
     # -hidden_layers: array indicando cuantas neurona tiene cada layer
     #                 ej: [3, 2] son 2 capaz con 3 y 2 neuronas respectivamente
     # -n_of_outputs: neuronas de la ultima capa
-    def __init__(self, n_of_inputs, hidden_layers, n_of_outputs):
+    def __init__(self, n_of_inputs, hidden_layers, n_of_outputs, betas):
         self.n_of_inputs = n_of_inputs
         self.hidden_layers = hidden_layers
         self.n_of_outputs = n_of_outputs
-
+        self.betas = betas
         # Array con la cantidad de neuronas de cada capa
         neurons_of_layer = [n_of_inputs] + hidden_layers + [n_of_outputs]
 
@@ -56,18 +57,6 @@ class Network:
         print("deltas: {}".format(deltas))
         print("activations: {}".format(activations))
 
-    def predict(self, input_):
-
-        self.activations[0] = input_
-
-        for i, w in enumerate(self.weights):
-            x = np.dot(w.T, input_) + self.biases[i].T
-            x = x.reshape(x.shape[1])
-            input_ = sigmoid(x)
-            self.activations[i + 1] = input_
-
-        return self.activations[-1]
-
     # @jit(target="cuda")
     def train(self, inputs, outputs, epochs, eta, adaptive_lr=False):
 
@@ -95,12 +84,24 @@ class Network:
         plt.plot(x, loss)
         plt.show()
 
+    def predict(self, input_):
+
+        self.activations[0] = input_
+
+        for i, w in enumerate(self.weights):
+            x = np.dot(w.T, input_) + self.biases[i].T
+            x = x.reshape(x.shape[1])
+            input_ = sigmoid(x, self.betas[i])
+            self.activations[i + 1] = input_
+
+        return self.activations[-1]
+
     # @jit(target="cuda")
     def back_propagate(self, error):
         for i in reversed(range(len(self.derivatives))):
             output = self.activations[i + 1]
 
-            delta = sigmoid_derivative(output) * error
+            delta = sigmoid_derivative(output, self.betas[i]) * error #g'(h)*error
             self.deltas[i] = delta.reshape(delta.shape[0], -1).T
 
             inputs = self.activations[i]
@@ -117,6 +118,9 @@ class Network:
         for i in range(len(self.weights)):
             self.weights[i] += eta * self.derivatives[i]
             self.biases[i] += eta * self.deltas[i].reshape(self.biases[i].shape)
+
+
+
 
     # @jit(target="cuda")
     def mean_square_error(self, expected, predicted_output):

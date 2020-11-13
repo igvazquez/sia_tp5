@@ -3,7 +3,7 @@ import pandas as pd
 from Autoencoder import Autoencoder
 
 # 7*5
-ae = Autoencoder(35, [20, 15], 10)
+ae = Autoencoder(35, [30,25,20], 15)
 
 df = pd.read_csv('numerosenbits', delimiter="\n", header=None)
 
