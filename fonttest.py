@@ -5,10 +5,10 @@ from Autoencoder import Autoencoder
 betas = [9, 0.8, 0.7, 0.6, 0.5, 0.6, 0.7, 0.8, 0.9]
 ae = Autoencoder(35, [30, 20, 10], 5, betas)
 
-df = pd.read_csv('font2.txt', delimiter="\n", header=None, dtype=str)
+df = pd.read_csv('fonttesting.txt', delimiter="\n", header=None, dtype=str)
 
 df = np.array(df)
-data = df.reshape(32, 7)
+data = df.reshape(2, 7)
 test = data[1]
 
 input_numbers = []
@@ -22,8 +22,8 @@ for i in range(len(input_numbers)):
 output_numbers = input_numbers
 
 # 7*8 pixeles
-ae = Autoencoder(56, [100, 50, 40], 32,betas)
-ae.train(np.asarray(input_numbers), np.asarray(output_numbers), 10000, 0.0001, True)
+ae = Autoencoder(56, [100, 50, 40], 10, betas)
+ae.train(np.asarray(input_numbers), np.asarray(output_numbers), 10000, 0.2)
 
 outputs = []
 for inp in range(len(input_numbers)):

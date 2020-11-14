@@ -5,12 +5,16 @@ import matplotlib.pyplot as plt
 
 def sigmoid(x, beta):
     # return 1.0 / (1 + np.exp(-x))
-    return np.tanh(beta * x)
+    return np.tanh(x)
+    # return np.maximum(x, 0)
 
 
 def sigmoid_derivative(x, beta):
     # return x * (1 - x)
-    return beta * (1 - np.power(x, 2))
+    return 1 - np.power(x, 2)
+    # x[x <= 0] = 0
+    # x[x > 0] = 1
+    # return x
 
 
 class Network:
@@ -90,6 +94,7 @@ class Network:
 
         for i, w in enumerate(self.weights):
             x = np.dot(w.T, input_) + self.biases[i].T
+            x = x / np.linalg.norm(x)
             x = x.reshape(x.shape[1])
             input_ = sigmoid(x, self.betas[i])
             self.activations[i + 1] = input_
@@ -110,6 +115,7 @@ class Network:
             self.derivatives[i] = np.dot(inputs, self.deltas[i])
 
             error = np.dot(self.deltas[i], self.weights[i].T)
+            error = error / np.linalg.norm(error)
             error = error.reshape(error.shape[1])
 
     # @jit(target="cuda")

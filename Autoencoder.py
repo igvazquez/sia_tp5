@@ -42,6 +42,7 @@ class Autoencoder:
         for i, w in enumerate(weights):
             x = np.dot(w.T, input_) + b[i].T
             x = x.reshape(x.shape[1])
+            x = x / np.linalg.norm(x)
             input_ = sigmoid(x)
             activations[i + 1] = input_
 
@@ -65,6 +66,7 @@ class Autoencoder:
         for i, w in enumerate(weights):
             x = np.dot(w.T, input_) + b[i].T
             x = x.reshape(x.shape[1])
+            x = x / np.linalg.norm(x)
             input_ = sigmoid(x)
             activations[i + 1] = input_
 

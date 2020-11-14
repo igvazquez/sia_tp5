@@ -3,7 +3,8 @@ import pandas as pd
 from Autoencoder import Autoencoder
 
 # 7*5
-ae = Autoencoder(35, [30,25,20], 15)
+betas = [9, 0.8, 0.7, 0.6, 0.5, 0.6, 0.7, 0.8, 0.9]
+ae = Autoencoder(35, [30,25,20], 15, betas)
 
 df = pd.read_csv('numerosenbits', delimiter="\n", header=None)
 
@@ -23,7 +24,7 @@ for i in range(len(input_numbers)):
 # output_numbers = np.array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]) / 9
 output_numbers = input_numbers
 
-ae.train(np.asarray(input_numbers), np.asarray(output_numbers), 10000, 0.5, True)
+ae.train(np.asarray(input_numbers), np.asarray(output_numbers), 10000, 0.8, True)
 
 outputs = []
 # new_input = np.zeros(10)
