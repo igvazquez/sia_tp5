@@ -9,16 +9,18 @@ def sigmoid(x):
 
 class Autoencoder:
 
-    def __init__(self, n_of_inputs, hidden_layers, n_of_outputs,betas):
+    def __init__(self, n_of_inputs, hidden_layers, n_of_outputs, betas):
         rev = hidden_layers
         rev = rev[::-1]
         hidden_layers.append(n_of_outputs)
         hidden_layers.extend(rev)
-        self.autoencoder = Network(n_of_inputs, hidden_layers, n_of_inputs,betas)
+
+        self.autoencoder = Network(n_of_inputs, hidden_layers, n_of_inputs, betas)
         self.n_of_inputs = n_of_inputs
         self.n_of_outputs = n_of_outputs
         self.hl = hidden_layers
         self.neurons_of_layer = [self.n_of_inputs] + self.hl + [self.n_of_inputs]
+        print("neurons_of_layer:", self.neurons_of_layer)
 
     def train(self, inputs, outputs, epochs, eta, adaptive_lr=False):
         self.autoencoder.train(inputs, outputs, epochs, eta, adaptive_lr)
@@ -26,12 +28,12 @@ class Autoencoder:
     def decode(self, input_):
         # return self.autoencoder.predict(input_)
         weights = self.autoencoder.weights
-        weights = weights[int(len(weights)/2):]
+        weights = weights[int(len(weights) / 2):]
 
         b = self.autoencoder.biases
-        b = b[int(len(b)/2):]
+        b = b[int(len(b) / 2):]
 
-        neurons_of_layer = self.neurons_of_layer[int(len(self.neurons_of_layer)/2):]
+        neurons_of_layer = self.neurons_of_layer[int(len(self.neurons_of_layer) / 2):]
 
         activations = []
         for i in range(len(neurons_of_layer)):
@@ -48,14 +50,14 @@ class Autoencoder:
 
         return activations[-1]
 
-    def encode(self,  input_):
+    def encode(self, input_):
         weights = self.autoencoder.weights
         weights = weights[:int(len(weights) / 2)]
 
         b = self.autoencoder.biases
         b = b[:int(len(b) / 2)]
 
-        neurons_of_layer = self.neurons_of_layer[:int(len(self.neurons_of_layer)/2)+1]
+        neurons_of_layer = self.neurons_of_layer[:int(len(self.neurons_of_layer) / 2) + 1]
 
         activations = []
         for i in range(len(neurons_of_layer)):
