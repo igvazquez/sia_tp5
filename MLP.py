@@ -154,7 +154,8 @@ class Network:
     def update_weights(self, eta):
 
         for i in range(len(self.weights)):
-            delta_w = eta * self.derivatives[i] 
+            memento =  0.8 * self.last_derivatives[i]
+            delta_w = eta * self.derivatives[i] + memento
             self.weights[i] += delta_w
             self.biases[i] += eta*self.deltas[i].reshape(self.biases[i].shape)
 
