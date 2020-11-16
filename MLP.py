@@ -120,8 +120,8 @@ class Network:
     def update_weights(self, eta):
 
         for i in range(len(self.weights)):
-            self.weights[i] += eta * self.derivatives[i] + (eta/2)*self.last_derivatives[i]
-            self.biases[i] += eta * self.deltas[i].reshape(self.biases[i].shape) + (eta/2)*self.last_deltas[i].reshape(self.biases[i].shape)
+            self.weights[i] += eta * self.derivatives[i] + (eta*0.9)*self.last_derivatives[i]
+            self.biases[i] += eta * self.deltas[i].reshape(self.biases[i].shape) + (eta*0.9)*self.last_deltas[i].reshape(self.biases[i].shape)
 
     def mean_square_error(self, expected, predicted_output):
         return np.average((expected - predicted_output) ** 2)

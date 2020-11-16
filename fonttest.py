@@ -23,11 +23,11 @@ for i in range(len(input_numbers)):
     #     input_numbers[i] = input_numbers[i] / np.linalg.norm(input_numbers[i])
 
 output_numbers = input_numbers
-hidden_layer = [35, 25,15,5]
+hidden_layer = [35, 25,15,10,5]
 betas = np.ones((1, 2*len(hidden_layer) + 3))
 # 7*5 pixeles
 ae = Autoencoder(35, hidden_layer, 2, betas[0])
-ae.train(np.asarray(input_numbers), np.asarray(output_numbers), 5000, 0.0009, False)
+ae.train(np.asarray(input_numbers), np.asarray(output_numbers), 5000, 0.0005, False)
 
 outputs = []
 for inp in range(len(input_numbers)):
