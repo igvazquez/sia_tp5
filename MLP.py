@@ -28,6 +28,8 @@ class Network:
 
         weights = []
         biases = []
+        last_deltas = []
+        last_derivates = []
         derivatives = []
         deltas = []
         for i in range(len(neurons_of_layer) - 1):
@@ -38,6 +40,8 @@ class Network:
             d = np.zeros((neurons_of_layer[i], neurons_of_layer[i + 1]))
             deltas_i = np.zeros((neurons_of_layer[i + 1], 1))
             deltas.append(deltas_i)
+            last_deltas.append(deltas_i)
+            last_derivates.append(d)
             derivatives.append(d)
             weights.append(w)
             biases.append(b)
@@ -45,7 +49,8 @@ class Network:
         self.biases = biases
         self.derivatives = derivatives
         self.deltas = deltas
-
+        self.last_deltas  =deltas
+        self.last_derivatives = last_derivates
         activations = []
         for i in range(len(neurons_of_layer)):
             a = np.zeros(neurons_of_layer[i])
@@ -101,11 +106,12 @@ class Network:
             output = self.activations[i + 1]
 
             delta = sigmoid_derivative(output) * error
+            self.last_deltas[i] = self.deltas[i]
             self.deltas[i] = delta.reshape(delta.shape[0], -1).T
 
             inputs = self.activations[i]
             inputs = inputs.reshape(inputs.shape[0], -1)
-
+            self.last_derivatives[i] = self.derivatives[i]
             self.derivatives[i] = np.dot(inputs, self.deltas[i])
 
             error = np.dot(self.deltas[i], self.weights[i].T)
@@ -114,8 +120,8 @@ class Network:
     def update_weights(self, eta):
 
         for i in range(len(self.weights)):
-            self.weights[i] += eta * self.derivatives[i]
-            self.biases[i] += eta * self.deltas[i].reshape(self.biases[i].shape)
+            self.weights[i] += eta * self.derivatives[i] + 0.01*self.last_derivatives[i]
+            self.biases[i] += eta * self.deltas[i].reshape(self.biases[i].shape) + 0.01*self.last_deltas[i].reshape(self.biases[i].shape)
 
     def mean_square_error(self, expected, predicted_output):
         return np.average((expected - predicted_output) ** 2)
