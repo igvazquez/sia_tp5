@@ -47,11 +47,11 @@ print("output_numbers: ", output_numbers)
 #     encoded_input = ae.encode(input_numbers[inp])
 #     outputs.append(ae.decode(encoded_input))
 
-hidden_layer = [30, 25, 15, 10]
-betas = np.ones((1, 2 * len(hidden_layer) + 3))
+hidden_layer = [35,20, 10, 5]
+betas = np.random.random_sample((1, 2 * len(hidden_layer) + 3))/100
 # 7*5 pixeles
 ae = Autoencoder(35, hidden_layer, 2, betas[0], 0.02)
-ae.train(np.asarray(input_numbers), np.asarray(output_numbers), 10000, 0.00045,10,0.5,0.1, True)
+ae.train(np.asarray(input_numbers), np.asarray(output_numbers), 10000, 0.0005,50,0.2,0.05, True)
 
 outputs = []
 for inp in range(len(input_numbers)):

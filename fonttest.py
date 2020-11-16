@@ -22,7 +22,7 @@ for i in range(len(input_numbers)):
 
 output_numbers = input_numbers
 hidden_layer = [30, 25, 15, 10]
-betas = np.ones((1, 2 * len(hidden_layer) + 3))
+betas = np.random.random_sample((1, 2 * len(hidden_layer) + 3))/100
 # 7*5 pixeles
 ae = Autoencoder(35, hidden_layer, 2, betas[0], 0.02)
 ae.train(np.asarray(input_numbers), np.asarray(output_numbers), 10000, 0.00045,10,0.5,0.1, True)
