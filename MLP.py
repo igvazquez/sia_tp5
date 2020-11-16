@@ -79,7 +79,7 @@ class Network:
 
         return self.activations[-1], self.weights
 
-    def train(self, inputs, outputs, epochs, eta, K, a, b, adaptive_lr=False):
+    def train(self, inputs, outputs, epochs, eta, K, a,Q, b, adaptive_lr=False):
         loss = []
         x = []
         etas = []
@@ -107,24 +107,24 @@ class Network:
             if loss_value < min_loss:
                 min_loss = loss_value
                 min_weights = weights
-            print("Loss: {} at epoch {}".format(loss_value, i + 1))
+            if (i+1) % 100 == 0:
+                print("Loss: {} at epoch {}".format(loss_value, i + 1))
             if loss_value <= self.max_error:
                 break
-            if loss_value - last_loss <= 0:
-                dec_loss += 1
-                gr_loss = 0
-            else:
+            if (loss_value - last_loss) <= 0:
                 gr_loss += 1
                 dec_loss = 0
-            if dec_loss >= K:
-                eta += a*eta
-                dec_loss = 0
-                print("Eta = ", eta)
-            elif gr_loss >= K:
-                eta -= b*eta
+            else:
+                dec_loss += 1
                 gr_loss = 0
-                print("Eta = ", eta)
-
+            if gr_loss >= K:
+                eta += a * eta
+                gr_loss = 0
+                #print("Grow Eta = ", eta)
+            elif dec_loss >= Q:
+                eta -= b * eta
+                dec_loss = 0
+                #print("Dec Eta = ", eta)
 
             if adaptive_lr:
                 etas.append(eta)
@@ -163,7 +163,7 @@ class Network:
         return np.average((expected - predicted_output) ** 2)
 
     def exp_decay(self, epoch, eta):
-        k = 0.0001
+        k = 0.00001
         x = np.exp(-k * epoch)
         return eta * x
 
