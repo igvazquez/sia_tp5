@@ -8,7 +8,7 @@ print(betas)
 df = pd.read_csv('fonttesting.txt', delimiter="\n", header=None, dtype=str)
 
 df = np.array(df)
-data = df.reshape(3, 7)
+data = df.reshape(6, 7)
 print("df", data)
 input_numbers = []
 for i in range(len(data)):
@@ -25,7 +25,7 @@ output_numbers = input_numbers
 
 # 7*5 pixeles
 ae = Autoencoder(35, [56, 56], 56, betas[0])
-ae.train(np.asarray(input_numbers), np.asarray(output_numbers), 5000, 0.1, False)
+ae.train(np.asarray(input_numbers), np.asarray(output_numbers), 10000, 0.1, False)
 
 outputs = []
 for inp in range(len(input_numbers)):
