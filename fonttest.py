@@ -21,11 +21,10 @@ for i in range(len(input_numbers)):
     #     input_numbers[i] = input_numbers[i] / np.linalg.norm(input_numbers[i])
 
 output_numbers = input_numbers
-hidden_layer = [30, 25, 15, 10]
-betas = np.random.random_sample((1, 2 * len(hidden_layer) + 3))/100
+hidden_layer = [35,20, 10, 5]
 # 7*5 pixeles
-ae = Autoencoder(35, hidden_layer, 2, betas[0], 0.02)
-ae.train(np.asarray(input_numbers), np.asarray(output_numbers), 1000, 0.00045,10,0.5,0.1, True)
+ae = Autoencoder(35, hidden_layer, 2, 0.02)
+ae.train(np.asarray(input_numbers), np.asarray(output_numbers), 20000, 0.0005, 10, 0, 10,0, False)
 
 outputs = []
 latent_space = []
