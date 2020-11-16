@@ -25,13 +25,54 @@ hidden_layer = [30, 25, 15, 10]
 betas = np.random.random_sample((1, 2 * len(hidden_layer) + 3))/100
 # 7*5 pixeles
 ae = Autoencoder(35, hidden_layer, 2, betas[0], 0.02)
-ae.train(np.asarray(input_numbers), np.asarray(output_numbers), 10000, 0.00045,10,0.5,0.1, True)
+ae.train(np.asarray(input_numbers), np.asarray(output_numbers), 1000, 0.00045,10,0.5,0.1, True)
 
 outputs = []
+latent_space = []
+labels = ["At", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U",
+          "V", "W", "X", "Y", "Z", "[", "\\", "^", "_", "Space"]
 for inp in range(len(input_numbers)):
     encoded_input = ae.encode(input_numbers[inp])
+    latent_space.append(encoded_input)
     outputs.append(ae.decode(encoded_input))
 
+# Grafico del espacio latente en 2 dimensiones
+x = []
+y = []
+for i in range(len(latent_space)):
+    x.append(latent_space[i][0])
+    y.append(latent_space[i][1])
+
+fig, ax = plt.subplots()
+ax.scatter(x, y)
+
+for i, txt in enumerate(labels):
+    ax.annotate(txt, (x[i], y[i]))
+
+# Grafico acercando D a B
+b = latent_space[1]
+d = latent_space[13]
+
+step = np.subtract(b, d) / 2
+
+plt.figure(figsize=(14, 14))
+for i in range(3):
+    # Diagonal
+    plt.subplot(3, 3, (1+4*i))
+    plt.pcolor(ae.decode(np.subtract(b, step*i)).reshape(7, 5), cmap='gray')
+
+for i in range(2):
+    plt.subplot(3, 3, (2 + i))
+    plt.pcolor(ae.decode([b[0]-step[0]*(i+1), b[1]]).reshape(7, 5), cmap='gray')
+    plt.subplot(3, 3, (4 + i * 3))
+    plt.pcolor(ae.decode([b[0], b[1]-step[1]*(i+1)]).reshape(7, 5), cmap='gray')
+    plt.subplot(3, 3, (6 + i * 2))
+    plt.pcolor(ae.decode([b[0]-step[0]*(2-i), b[1]-step[1]*(1+i)]).reshape(7, 5), cmap='gray')
+
+plt.tight_layout()
+plt.show()
+
+# Grafico de las letras
 for i, out in enumerate(outputs):
     outputs[i] = np.array(out).reshape((7, 5))
 
