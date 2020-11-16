@@ -10,21 +10,21 @@ def sigmoid(x):
 
 class Autoencoder:
 
-    def __init__(self, n_of_inputs, hidden_layers, n_of_outputs, betas,max_error):
+    def __init__(self, n_of_inputs, hidden_layers, n_of_outputs, betas, max_error):
         rev = hidden_layers
         rev = rev[::-1]
         hidden_layers.append(n_of_outputs)
         hidden_layers.extend(rev)
 
-        self.autoencoder = Network(n_of_inputs, hidden_layers, n_of_inputs,max_error)
+        self.autoencoder = Network(n_of_inputs, hidden_layers, n_of_inputs, max_error)
         self.n_of_inputs = n_of_inputs
         self.n_of_outputs = n_of_outputs
         self.hl = hidden_layers
         self.neurons_of_layer = [self.n_of_inputs] + self.hl + [self.n_of_inputs]
         print("neurons_of_layer:", self.neurons_of_layer)
 
-    def train(self, inputs, outputs, epochs, eta, adaptive_lr=False):
-        self.autoencoder.train(inputs, outputs, epochs, eta, adaptive_lr)
+    def train(self, inputs, outputs, epochs, eta, K, a, b, adaptive_lr=False):
+        self.autoencoder.train(inputs, outputs, epochs, eta, K, a, b, adaptive_lr)
 
     def decode(self, input_):
         # return self.autoencoder.predict(input_)
