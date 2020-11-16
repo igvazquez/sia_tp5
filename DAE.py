@@ -44,17 +44,16 @@ for i in range(len(input_numbers)):
 #     outputs.append(ae.decode(encoded_input))
 
 
-hidden_layer = [35,20, 10, 5]
+hidden_layer = [30, 20, 10, 5]
 # 7*5 pixeles
 ae = Autoencoder(35, hidden_layer, 2, 0.02)
-ae.train(np.asarray(input_numbers), np.asarray(output_numbers), 10000, 0.0005,50,0,10,0, False)
+ae.train(np.asarray(input_numbers), np.asarray(output_numbers), 10000, 0.0005, 50, 0, 10, 0, False)
 
-#Plot the random inputs decodification
+# Plot the random inputs decodification
 random_inputs_outputs = []
 for inp in range(len(input_numbers)):
     encoded_input = ae.encode(input_numbers[inp])
     random_inputs_outputs.append(ae.decode(encoded_input))
-
 
 for i, input_ in enumerate(input_numbers):
     input_numbers[i] = np.array(input_).reshape((7, 5))
@@ -62,45 +61,36 @@ for i, input_ in enumerate(input_numbers):
 for i, out in enumerate(random_inputs_outputs):
     random_inputs_outputs[i] = np.array(out).reshape((7, 5))
 
-for i in range(32):
-    fig, ax = plt.subplots(ncols=2)
-    ax[0].set_title('Random input')
-    ax[1].set_title('Output')
-    sns.heatmap(input_numbers[i], cbar=False, cmap='binary', ax=ax[0])
-    sns.heatmap(random_inputs_outputs[i], cbar=True, cmap='binary', ax=ax[1])
-    plt.show()
+# Plot the new inputs decodification
 
-#Plot the new inputs decodification
-new_input = []
-# for i in range(len(data)):
-#     new_input.append("".join(np.squeeze(np.asarray(data[i]))))
-#
-# for i in range(len(input_numbers)):
-#     new_input[i] = list(new_input[i])
-#     new_input[i] = [-1 if j == '0' else int(j) for j in new_input[i]]
-#     norm = np.linalg.norm(input_numbers[i])
-#
 new_inputs = list(output_numbers)
-for i in range(len(input_numbers)):
+for i in range(len(new_inputs)):
     new_inputs[i] = random_func(new_inputs[i])
-    #print("new_inputs",new_inputs)
+    # print("new_inputs",new_inputs)
 new_outputs = []
 for inp in range(len(input_numbers)):
     encoded_input = ae.encode(new_inputs[inp])
     new_outputs.append(ae.decode(encoded_input))
-    #print("outputs",new_inputs)
+    # print("outputs", new_inputs)
 for i, out in enumerate(new_outputs):
     new_outputs[i] = np.array(out).reshape((7, 5))
 
 for i, input_ in enumerate(new_inputs):
     new_inputs[i] = np.array(input_).reshape((7, 5))
-    #print("new_inputs",new_inputs)
+    # print("new_inputs", new_inputs)
 for i in range(32):
-    fig, ax = plt.subplots(ncols=2)
-    ax[0].set_title('New random input')
-    ax[1].set_title('New output')
-    sns.heatmap(new_inputs[i], cbar=False, cmap='binary', ax=ax[0])
-    sns.heatmap(new_outputs[i], cbar=True, cmap='binary', ax=ax[1])
-    plt.show()
+    fig, ax = plt.subplots(2, 2)
 
+    ax[0, 0].set_title('Random input')
+    ax[0, 1].set_title('Output')
+    ax[1, 0].set_title('New random input')
+    ax[1, 1].set_title('New output')
+    sns.heatmap(input_numbers[i], cbar=False, cmap='binary', ax=ax[0, 0])
+    sns.heatmap(random_inputs_outputs[i], cbar=True, cmap='binary', ax=ax[0, 1])
+    sns.heatmap(new_inputs[i], cbar=False, cmap='Reds', ax=ax[1, 0])
+    sns.heatmap(new_outputs[i] , cbar=True, cmap='Reds', ax=ax[1, 1])
+
+
+plt.show()
+plt.close('all')
 print("Fin")

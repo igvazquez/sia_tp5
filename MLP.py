@@ -163,7 +163,7 @@ class Network:
         return np.average((expected - predicted_output) ** 2)
 
     def exp_decay(self, epoch, eta):
-        k = 0.00001
+        k = 0.000001
         x = np.exp(-k * epoch)
         return eta * x
 
