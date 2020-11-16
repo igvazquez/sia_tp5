@@ -107,7 +107,7 @@ class Network:
             if loss_value < min_loss:
                 min_loss = loss_value
                 min_weights = weights
-            if (i+1) % 100 == 0:
+            if (i+1) % 1 == 0:
                 print("Loss: {} at epoch {}".format(loss_value, i + 1))
             if loss_value <= self.max_error:
                 break
