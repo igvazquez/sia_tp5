@@ -5,6 +5,7 @@ import numpy as np
 def sigmoid(x):
     # return 1.0 / (1 + np.exp(-x))
     return np.tanh(x)
+    # return np.maximum(0, x)
 
 
 class Autoencoder:
@@ -15,7 +16,7 @@ class Autoencoder:
         hidden_layers.append(n_of_outputs)
         hidden_layers.extend(rev)
 
-        self.autoencoder = Network(n_of_inputs, hidden_layers, n_of_inputs, betas)
+        self.autoencoder = Network(n_of_inputs, hidden_layers, n_of_inputs)
         self.n_of_inputs = n_of_inputs
         self.n_of_outputs = n_of_outputs
         self.hl = hidden_layers
@@ -44,7 +45,6 @@ class Autoencoder:
         for i, w in enumerate(weights):
             x = np.dot(w.T, input_) + b[i].T
             x = x.reshape(x.shape[1])
-            x = x / np.linalg.norm(x)
             input_ = sigmoid(x)
             activations[i + 1] = input_
 
@@ -68,7 +68,6 @@ class Autoencoder:
         for i, w in enumerate(weights):
             x = np.dot(w.T, input_) + b[i].T
             x = x.reshape(x.shape[1])
-            x = x / np.linalg.norm(x)
             input_ = sigmoid(x)
             activations[i + 1] = input_
 
