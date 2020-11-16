@@ -2,15 +2,18 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
+
 def sigmoid(x):
     # return 1.0 / (1 + np.exp(-x))
     return np.tanh(x)
     # return np.maximum(0, x)
 
+
 def sigmoid_derivative(x):
     # return x * (1 - x)
     return 1 - np.power(x, 2)
     # return 1.0*(x>0)
+
 
 class Network:
 
@@ -18,7 +21,8 @@ class Network:
     # -hidden_layers: array indicando cuantas neurona tiene cada layer
     #                 ej: [3, 2] son 2 capaz con 3 y 2 neuronas respectivamente
     # -n_of_outputs: neuronas de la ultima capa
-    def __init__(self, n_of_inputs, hidden_layers, n_of_outputs):
+    def __init__(self, n_of_inputs, hidden_layers, n_of_outputs, max_error):
+        self.max_error = max_error
         self.n_of_inputs = n_of_inputs
         self.hidden_layers = hidden_layers
         self.n_of_outputs = n_of_outputs
@@ -49,7 +53,7 @@ class Network:
         self.biases = biases
         self.derivatives = derivatives
         self.deltas = deltas
-        self.last_deltas  =deltas
+        self.last_deltas = deltas
         self.last_derivatives = last_derivates
         activations = []
         for i in range(len(neurons_of_layer)):
@@ -58,10 +62,10 @@ class Network:
         self.activations = activations
 
         print("weights: {}".format(weights))
-        print("biases: {}".format(biases))
-        print("derivatives: {}".format(derivatives))
-        print("deltas: {}".format(deltas))
-        print("activations: {}".format(activations))
+        # print("biases: {}".format(biases))
+        # print("derivatives: {}".format(derivatives))
+        # print("deltas: {}".format(deltas))
+        # print("activations: {}".format(activations))
 
     def predict(self, input_):
 
@@ -73,17 +77,23 @@ class Network:
             input_ = sigmoid(x)
             self.activations[i + 1] = input_
 
-        return self.activations[-1]
+        return self.activations[-1], self.weights
 
-    def train(self, inputs, outputs, epochs, eta, adaptive_lr=False):
-
+    def train(self, inputs, outputs, epochs, eta, K, a, b, adaptive_lr=False):
         loss = []
         x = []
         etas = []
+        min_weights = []
+        min_loss = 100000
+        last_loss = 0
+        dec_loss = 0
+        gr_loss = 0
+        loss_value = 0
+
         for i in range(epochs):
             total_error = 0
             for j, input_ in enumerate(inputs):
-                predicted_output = self.predict(input_)
+                predicted_output, weights = self.predict(input_)
 
                 error = outputs[j] - predicted_output
 
@@ -92,12 +102,37 @@ class Network:
                 self.update_weights(eta)
 
                 total_error += self.mean_square_error(outputs[j], predicted_output)
-            print("Error: {} at epoch {}".format(total_error / len(inputs), i + 1))
+            last_loss = loss_value
+            loss_value = total_error / len(inputs)
+            if loss_value < min_loss:
+                min_loss = loss_value
+                min_weights = weights
+            print("Loss: {} at epoch {}".format(loss_value, i + 1))
+            if loss_value <= self.max_error:
+                break
+            if loss_value - last_loss <= 0:
+                dec_loss += 1
+                gr_loss = 0
+            else:
+                gr_loss += 1
+                dec_loss = 0
+            if dec_loss >= K:
+                eta += a*eta
+                dec_loss = 0
+                print("Eta = ", eta)
+            elif gr_loss >= K:
+                eta -= b*eta
+                gr_loss = 0
+                print("Eta = ", eta)
+
+
             if adaptive_lr:
                 etas.append(eta)
                 eta = self.exp_decay(i, etas[0])
-            loss.append(total_error / len(inputs))
+            loss.append(loss_value)
             x.append(i)
+        print("Minimum loss: ", min_loss)
+        self.weights = min_weights
         plt.plot(x, loss)
         plt.show()
 
@@ -120,14 +155,15 @@ class Network:
     def update_weights(self, eta):
 
         for i in range(len(self.weights)):
-            self.weights[i] += eta * self.derivatives[i] + 0.01*self.last_derivatives[i]
-            self.biases[i] += eta * self.deltas[i].reshape(self.biases[i].shape) + 0.01*self.last_deltas[i].reshape(self.biases[i].shape)
+            self.weights[i] += eta * self.derivatives[i] + (eta * 0.9) * self.last_derivatives[i]
+            self.biases[i] += eta * self.deltas[i].reshape(self.biases[i].shape) + (eta * 0.9) * self.last_deltas[
+                i].reshape(self.biases[i].shape)
 
     def mean_square_error(self, expected, predicted_output):
         return np.average((expected - predicted_output) ** 2)
 
     def exp_decay(self, epoch, eta):
-        k = 0.001
+        k = 0.0001
         x = np.exp(-k * epoch)
         return eta * x
 
