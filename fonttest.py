@@ -24,7 +24,7 @@ output_numbers = input_numbers
 hidden_layer = [35,20, 10, 5]
 # 7*5 pixeles
 ae = Autoencoder(35, hidden_layer, 2, 0.02)
-ae.train(np.asarray(input_numbers), np.asarray(output_numbers), 10000, 0.0005,50,0,10,0, False)
+ae.train(np.asarray(input_numbers), np.asarray(output_numbers), 20000, 0.0005, 10, 0, 10,0, False)
 
 outputs = []
 for inp in range(len(input_numbers)):

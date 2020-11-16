@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 
 
 def randomize(value):
-    rand = 0.8*np.random.rand()-1
+    rand = 1.5*np.random.rand()-1
     #new_value = 1 if value == -1 else -1
 
     return value+rand
@@ -43,7 +43,7 @@ for i in range(len(input_numbers)):
 hidden_layer = []
 # 7*5 pixeles
 ae = Autoencoder(35, hidden_layer,30, 0.000002)
-ae.train(np.asarray(input_numbers), np.asarray(output_numbers), 20000, 0.0005, 5, 10, 10,0.01, True)
+ae.train(np.asarray(input_numbers), np.asarray(output_numbers), 20000, 0.0005, 10, 5, 10,0.01, True)
 
 # Plot the random inputs decodification
 random_inputs_outputs = []
@@ -85,6 +85,7 @@ for i in range(32):
     sns.heatmap(random_inputs_outputs[i], cbar=True, cmap='binary', ax=ax[0, 1])
     sns.heatmap(new_inputs[i], cbar=False, cmap='binary', ax=ax[1, 0])
     sns.heatmap(new_outputs[i] , cbar=True, cmap='binary', ax=ax[1, 1])
+
 
 
 plt.show()
