@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 
 def randomize(value):
     rand = np.random.rand()
-    new_value = 1 if value == -1 else 1
+    new_value = 1 if value == 0 else 0
     if rand <= random_prob:
 
         return new_value
@@ -23,11 +23,10 @@ print("df", data)
 input_numbers = []
 for i in range(len(data)):
     input_numbers.append("".join(np.squeeze(np.asarray(data[i]))))
-
 for i in range(len(input_numbers)):
     input_numbers[i] = list(input_numbers[i])
-    input_numbers[i] = [-1 if j == '0' else int(j) for j in input_numbers[i]]
-    norm = np.linalg.norm(input_numbers[i])
+    input_numbers[i] = [0 if j == '0' else int(j) for j in input_numbers[i]]
+    # norm = np.linalg.norm(input_numbers[i])
     # if norm > 0:
     #     input_numbers[i] = input_numbers[i] / np.linalg.norm(input_numbers[i])
 
@@ -44,10 +43,10 @@ for i in range(len(input_numbers)):
 #     outputs.append(ae.decode(encoded_input))
 
 
-hidden_layer = [30, 20, 10, 5]
+hidden_layer = [25, 15, 3]
 # 7*5 pixeles
-ae = Autoencoder(35, hidden_layer, 2, 0.02)
-ae.train(np.asarray(input_numbers), np.asarray(output_numbers), 10000, 0.0005, 50, 0, 10, 0, False)
+ae = Autoencoder(35, hidden_layer, 2, 0.0002)
+ae.train(np.asarray(input_numbers), np.asarray(output_numbers), 10000, 0.0005, 100, 0, 10,0, True)
 
 # Plot the random inputs decodification
 random_inputs_outputs = []
