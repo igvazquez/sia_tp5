@@ -24,7 +24,7 @@ output_numbers = input_numbers
 hidden_layer = [35,20, 10, 5]
 # 7*5 pixeles
 ae = Autoencoder(35, hidden_layer, 2, 0.02)
-ae.train(np.asarray(input_numbers), np.asarray(output_numbers), 20000, 0.0005, 10, 0, 10,0, False)
+ae.train(np.asarray(input_numbers), np.asarray(output_numbers), 15000, 0.0005, 10, 0, 10,0, False)
 
 outputs = []
 latent_space = []
@@ -58,15 +58,15 @@ plt.figure(figsize=(14, 14))
 for i in range(3):
     # Diagonal
     plt.subplot(3, 3, (1+4*i))
-    plt.pcolor(ae.decode(np.subtract(b, step*i)).reshape(7, 5), cmap='gray')
+    plt.pcolor(ae.decode(np.subtract(b, step*i)).reshape(7, 5), cmap='binary')
 
 for i in range(2):
     plt.subplot(3, 3, (2 + i))
-    plt.pcolor(ae.decode([b[0]-step[0]*(i+1), b[1]]).reshape(7, 5), cmap='gray')
+    plt.pcolor(ae.decode([b[0]-step[0]*(i+1), b[1]]).reshape(7, 5), cmap='binary')
     plt.subplot(3, 3, (4 + i * 3))
-    plt.pcolor(ae.decode([b[0], b[1]-step[1]*(i+1)]).reshape(7, 5), cmap='gray')
+    plt.pcolor(ae.decode([b[0], b[1]-step[1]*(i+1)]).reshape(7, 5), cmap='binary')
     plt.subplot(3, 3, (6 + i * 2))
-    plt.pcolor(ae.decode([b[0]-step[0]*(2-i), b[1]-step[1]*(1+i)]).reshape(7, 5), cmap='gray')
+    plt.pcolor(ae.decode([b[0]-step[0]*(2-i), b[1]-step[1]*(1+i)]).reshape(7, 5), cmap='binary')
 
 plt.tight_layout()
 plt.show()
