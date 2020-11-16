@@ -10,13 +10,13 @@ def sigmoid(x):
 
 class Autoencoder:
 
-    def __init__(self, n_of_inputs, hidden_layers, n_of_outputs, betas):
+    def __init__(self, n_of_inputs, hidden_layers, n_of_outputs, betas,max_error):
         rev = hidden_layers
         rev = rev[::-1]
         hidden_layers.append(n_of_outputs)
         hidden_layers.extend(rev)
 
-        self.autoencoder = Network(n_of_inputs, hidden_layers, n_of_inputs)
+        self.autoencoder = Network(n_of_inputs, hidden_layers, n_of_inputs,max_error)
         self.n_of_inputs = n_of_inputs
         self.n_of_outputs = n_of_outputs
         self.hl = hidden_layers

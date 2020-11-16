@@ -13,22 +13,24 @@ def randomize(value):
         return value
 
 
-
-
 df = pd.read_csv('fonttesting.txt', delimiter="\n", header=None, dtype=str)
 
 df = np.array(df)
-data = df.reshape(3, 7)
+data = df.reshape(32, 7)
 print("df", data)
 input_numbers = []
 for i in range(len(data)):
     input_numbers.append("".join(np.squeeze(np.asarray(data[i]))))
 
-random_prob = 0.25
-random_func = np.vectorize(randomize)
 for i in range(len(input_numbers)):
     input_numbers[i] = list(input_numbers[i])
-    input_numbers[i] = [int(j) for j in input_numbers[i]]
+    input_numbers[i] = [-1 if j == '0' else int(j) for j in input_numbers[i]]
+    norm = np.linalg.norm(input_numbers[i])
+    # if norm > 0:
+    #     input_numbers[i] = input_numbers[i] / np.linalg.norm(input_numbers[i])
+
+random_prob = 0.25
+random_func = np.vectorize(randomize)
 
 output_numbers = np.copy(input_numbers)
 for i in range(len(input_numbers)):
@@ -36,17 +38,35 @@ for i in range(len(input_numbers)):
 
 print("input_numbers:", input_numbers)
 
-print("output_numbers: ",output_numbers)
-
-# 7*8 pixeles
-hidden_layer = [32, 16,8]
-print("shape: ",len(hidden_layer))
-betas = np.random.random_sample((1, 2*len(hidden_layer)+2+1))
-print("betas:",betas)
-ae = Autoencoder(56,hidden_layer , 2, betas[0])
-ae.train(np.asarray(input_numbers), np.asarray(output_numbers), 60000, 0.6,True)
+print("output_numbers: ", output_numbers)
 
 # outputs = []
 # for inp in range(len(input_numbers)):
 #     encoded_input = ae.encode(input_numbers[inp])
 #     outputs.append(ae.decode(encoded_input))
+
+output_numbers = input_numbers
+hidden_layer = [35, 25, 15, 10, 5]
+betas = np.ones((1, 2 * len(hidden_layer) + 3))
+# 7*5 pixeles
+ae = Autoencoder(35, hidden_layer, 2, betas[0])
+ae.train(np.asarray(input_numbers), np.asarray(output_numbers), 5000, 0.0005, False)
+
+outputs = []
+for inp in range(len(input_numbers)):
+    encoded_input = ae.encode(input_numbers[inp])
+    outputs.append(ae.decode(encoded_input))
+
+print(outputs)
+
+for i, out in enumerate(outputs):
+    outputs[i] = np.array(out).reshape((7, 5))
+
+n_letters = len(input_numbers)
+
+fig, ax = plt.subplots(ncols=2, sharey=True)
+
+for i in range(n_letters):
+    sns.heatmap(input_numbers[i], cbar=True, cmap='binary', ax=ax[0])
+    sns.heatmap(outputs[i], cbar=True, cmap='binary',ax=ax[1])
+    plt.show()

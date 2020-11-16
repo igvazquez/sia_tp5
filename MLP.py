@@ -18,7 +18,8 @@ class Network:
     # -hidden_layers: array indicando cuantas neurona tiene cada layer
     #                 ej: [3, 2] son 2 capaz con 3 y 2 neuronas respectivamente
     # -n_of_outputs: neuronas de la ultima capa
-    def __init__(self, n_of_inputs, hidden_layers, n_of_outputs):
+    def __init__(self, n_of_inputs, hidden_layers, n_of_outputs,max_error):
+        self.max_error = max_error
         self.n_of_inputs = n_of_inputs
         self.hidden_layers = hidden_layers
         self.n_of_outputs = n_of_outputs
@@ -92,7 +93,10 @@ class Network:
                 self.update_weights(eta)
 
                 total_error += self.mean_square_error(outputs[j], predicted_output)
+
             print("Error: {} at epoch {}".format(total_error / len(inputs), i + 1))
+            if total_error <= self.max_error:
+                break
             if adaptive_lr:
                 etas.append(eta)
                 eta = self.exp_decay(i, etas[0])
