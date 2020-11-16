@@ -1,6 +1,8 @@
 import numpy as np
 import pandas as pd
 from Autoencoder import Autoencoder
+import seaborn as sns
+import matplotlib.pyplot as plt
 
 betas = np.random.random_sample((1, 19))
 print(betas)
@@ -31,3 +33,11 @@ outputs = []
 for inp in range(len(input_numbers)):
     encoded_input = ae.encode(input_numbers[inp])
     outputs.append(ae.decode(encoded_input))
+
+plt.figure(figsize=(12, 5))
+
+for i, out in enumerate(outputs):
+    outputs[i] = np.array(out).reshape((7, 5))
+print(outputs)
+sns.heatmap(outputs[1], annot=True, fmt='g')
+plt.show()
