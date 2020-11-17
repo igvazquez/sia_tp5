@@ -31,11 +31,11 @@ for i in range(len(Xs)):
 # test = (((Xs[0] - np.mean(Xs[0])) / np.std(Xs[0])).reshape(-1, 12288))
 # plt.imshow(test[0].reshape(64, 64, 3))
 # plt.show()
-hidden_layer = [1024]
+hidden_layer = [192]
 
-ae = Autoencoder(64 * 64 * 3, hidden_layer, 32, 0.0002)
+ae = Autoencoder(64 * 64 * 3, hidden_layer, 64, 0.00000002)
 
-ae.train(test, test, 70, 0.005, 5, 1, 10, 0.5, True)
+ae.train(test, test, 50, 0.0005,5, 0.5,10, 0.1, True)
 
 outputs = []
 latent_space = []

@@ -61,7 +61,7 @@ class Network:
             activations.append(a)
         self.activations = activations
 
-        print("weights: {}".format(weights))
+        #print("weights: {}".format(weights))
         # print("biases: {}".format(biases))
         # print("derivatives: {}".format(derivatives))
         # print("deltas: {}".format(deltas))
@@ -107,7 +107,7 @@ class Network:
             if loss_value < min_loss:
                 min_loss = loss_value
                 min_weights = weights
-            if (i+1) % 1 == 0:
+            if (i+1) % (epochs/10) == 0:
                 print("Loss: {} at epoch {}".format(loss_value, i + 1))
             if loss_value <= self.max_error:
                 break

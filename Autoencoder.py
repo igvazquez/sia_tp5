@@ -23,6 +23,11 @@ class Autoencoder:
         self.neurons_of_layer = [self.n_of_inputs] + self.hl + [self.n_of_inputs]
         print("neurons_of_layer:", self.neurons_of_layer)
 
+    # Epochs: cantidad  de epocas a entrenar
+    # eta: learning rate
+    # K: si el error decrece K veces, entonces eta = eta + a*eta
+    # Q: si el error crece Q veces, entonces eta = eta + b*eta
+    # adaptative_lr: activa o desactiva el decaimiento exponencial del eta
     def train(self, inputs, outputs, epochs, eta,K,a,Q,b, adaptive_lr=False):
         self.autoencoder.train(inputs, outputs, epochs, eta,K,a,Q,b, adaptive_lr)
 

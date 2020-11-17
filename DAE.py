@@ -6,17 +6,16 @@ import matplotlib.pyplot as plt
 
 
 def randomize(value):
-    rand = 1.5*np.random.rand()-1
-    #new_value = 1 if value == -1 else -1
+    rand = 1.5 * np.random.rand() - 1.5
 
-    return value+rand
+    return value + rand
 
 
 df = pd.read_csv('fonttesting.txt', delimiter="\n", header=None, dtype=str)
 
 df = np.array(df)
 data = df.reshape(32, 7)
-print("df", data)
+#print("df", data)
 input_numbers = []
 for i in range(len(data)):
     input_numbers.append("".join(np.squeeze(np.asarray(data[i]))))
@@ -42,8 +41,8 @@ for i in range(len(input_numbers)):
 
 hidden_layer = []
 # 7*5 pixeles
-ae = Autoencoder(35, hidden_layer,30, 0.000002)
-ae.train(np.asarray(input_numbers), np.asarray(output_numbers), 20000, 0.0005, 10, 5, 10,0.01, True)
+ae = Autoencoder(35, hidden_layer, 30, 0.000002)
+ae.train(np.asarray(input_numbers), np.asarray(output_numbers), 10000, 0.01, 10, 5, 10,1, True)
 
 # Plot the random inputs decodification
 random_inputs_outputs = []
@@ -84,9 +83,7 @@ for i in range(32):
     sns.heatmap(input_numbers[i], cbar=False, cmap='binary', ax=ax[0, 0])
     sns.heatmap(random_inputs_outputs[i], cbar=True, cmap='binary', ax=ax[0, 1])
     sns.heatmap(new_inputs[i], cbar=False, cmap='binary', ax=ax[1, 0])
-    sns.heatmap(new_outputs[i] , cbar=True, cmap='binary', ax=ax[1, 1])
-
-
+    sns.heatmap(new_outputs[i], cbar=True, cmap='binary', ax=ax[1, 1])
 
 plt.show()
 plt.close('all')

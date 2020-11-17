@@ -26,9 +26,11 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="PyScientificConfigurable" />
   </component>
-  <component name="RunManager" selected="Python.fonttest">
-    <configuration name="DAE" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.pokeMix">
+    <configuration name="DAE (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -94,10 +96,56 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="pokeEvolution" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\matim\AppData\Local\Programs\Python\Python39\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\matim\Documents\git\sia_tp5\pokeEvolution.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pokeMix" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\matim\AppData\Local\Programs\Python\Python39\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/pokeMix.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.pokeMix" />
         <item itemvalue="Python.fonttest" />
-        <item itemvalue="Python.DAE" />
+        <item itemvalue="Python.DAE (1)" />
+        <item itemvalue="Python.pokeEvolution" />
         <item itemvalue="Python.digitstest" />
       </list>
     </recent_temporary>
@@ -111,6 +159,10 @@
       <option name="presentableId" value="Default" />
       <updated>1605452803245</updated>
       <workItem from="1605452804330" duration="15286000" />
+      <workItem from="1605493112071" duration="5246000" />
+      <workItem from="1605525981005" duration="27147000" />
+      <workItem from="1605579967248" duration="578000" />
+      <workItem from="1605612878062" duration="5361000" />
     </task>
     <servers />
   </component>
@@ -118,38 +170,50 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1323" height="267" key="GridCell.Tab.0.bottom" timestamp="1605492611362">
+    <state x="716" y="330" key="FileChooserDialogImpl" timestamp="1605565659561">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1323" height="267" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1605492611362" />
-    <state width="1323" height="267" key="GridCell.Tab.0.center" timestamp="1605492611362">
+    <state x="716" y="330" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1605565659561" />
+    <state width="1533" height="103" key="GridCell.Tab.0.bottom" timestamp="1605618244936">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1323" height="267" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1605492611362" />
-    <state width="1323" height="267" key="GridCell.Tab.0.left" timestamp="1605492611362">
+    <state width="1533" height="103" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1605618244936" />
+    <state width="1533" height="103" key="GridCell.Tab.0.center" timestamp="1605618244936">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1323" height="267" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1605492611362" />
-    <state width="1323" height="267" key="GridCell.Tab.0.right" timestamp="1605492611362">
+    <state width="1533" height="103" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1605618244936" />
+    <state width="1533" height="103" key="GridCell.Tab.0.left" timestamp="1605618244936">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1323" height="267" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1605492611362" />
-    <state width="1323" height="267" key="GridCell.Tab.1.bottom" timestamp="1605492613468">
+    <state width="1533" height="103" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1605618244936" />
+    <state width="1533" height="103" key="GridCell.Tab.0.right" timestamp="1605618244936">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1323" height="267" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1605492613468" />
-    <state width="1323" height="267" key="GridCell.Tab.1.center" timestamp="1605492613468">
+    <state width="1533" height="103" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1605618244936" />
+    <state width="1877" height="310" key="GridCell.Tab.1.bottom" timestamp="1605566958805">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1323" height="267" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1605492613468" />
-    <state width="1323" height="267" key="GridCell.Tab.1.left" timestamp="1605492613468">
+    <state width="1877" height="310" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1605566958805" />
+    <state width="1877" height="310" key="GridCell.Tab.1.center" timestamp="1605566958805">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1323" height="267" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1605492613468" />
-    <state width="1323" height="267" key="GridCell.Tab.1.right" timestamp="1605492613468">
+    <state width="1877" height="310" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1605566958805" />
+    <state width="1877" height="310" key="GridCell.Tab.1.left" timestamp="1605566958805">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1323" height="267" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1605492613468" />
+    <state width="1877" height="310" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1605566958805" />
+    <state width="1877" height="310" key="GridCell.Tab.1.right" timestamp="1605566958805">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="310" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1605566958805" />
+    <state x="667" y="153" key="SettingsEditor" timestamp="1605566586438">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="667" y="153" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1605566586438" />
+    <state x="578" y="91" width="898" height="627" key="dock-window-1" timestamp="1605534565272">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="578" y="91" width="898" height="627" key="dock-window-1/0.0.1920.1040@0.0.1920.1040" timestamp="1605534565272" />
     <state x="957" y="230" width="672" height="678" key="search.everywhere.popup" timestamp="1605455230545">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -160,17 +224,45 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/fonttest.py</url>
-          <line>6</line>
+          <line>82</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/fonttest.py</url>
+          <line>79</line>
           <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/fonttest.py</url>
+          <line>74</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/DAE.py</url>
+          <line>31</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/DAE.py</url>
+          <line>88</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/fonttest.py</url>
+          <line>28</line>
+          <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/sia_tp5$test.coverage" NAME="test Coverage Results" MODIFIED="1605481112763" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/sia_tp5$DAE.coverage" NAME="DAE Coverage Results" MODIFIED="1605463738610" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/sia_tp5$pokeMix.coverage" NAME="pokeMix Coverage Results" MODIFIED="1605618244929" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/sia_tp5$DAE.coverage" NAME="DAE Coverage Results" MODIFIED="1605545881735" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/sia_tp5$MultiNeuralNetwork.coverage" NAME="MultiNeuralNetwork Coverage Results" MODIFIED="1605488619879" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/sia_tp5$fonttest.coverage" NAME="fonttest Coverage Results" MODIFIED="1605492611192" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/sia_tp5$poke.coverage" NAME="pokeEvolution Coverage Results" MODIFIED="1605566591104" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/sia_tp5$DAE__1_.coverage" NAME="DAE (1) Coverage Results" MODIFIED="1605617156929" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/sia_tp5$fonttest.coverage" NAME="fonttest Coverage Results" MODIFIED="1605618186425" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/sia_tp5$digitstest.coverage" NAME="digitstest Coverage Results" MODIFIED="1605402015354" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

@@ -41,7 +41,7 @@ ae.train(test, test, 50, 0.0005,5, 0.5,10, 0.1, True)
 outputs = []
 latent_space = []
 for inp in range(len(test)):
-    print("inp:",inp)
+
     encoded_input = ae.encode(test[inp])
     latent_space.append(encoded_input)
     outputs.append(ae.decode(encoded_input))

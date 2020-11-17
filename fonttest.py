@@ -8,7 +8,7 @@ df = pd.read_csv('fonttesting.txt', delimiter="\n", header=None, dtype=str)
 
 df = np.array(df)
 data = df.reshape(32, 7)
-print("df", data)
+#print("df", data)
 input_numbers = []
 for i in range(len(data)):
     input_numbers.append("".join(np.squeeze(np.asarray(data[i]))))
@@ -21,10 +21,10 @@ for i in range(len(input_numbers)):
     #     input_numbers[i] = input_numbers[i] / np.linalg.norm(input_numbers[i])
 
 output_numbers = input_numbers
-hidden_layer = [35,20, 10, 5]
+hidden_layer = [30,20, 10, 5]
 # 7*5 pixeles
-ae = Autoencoder(35, hidden_layer, 2, 0.02)
-ae.train(np.asarray(input_numbers), np.asarray(output_numbers), 15000, 0.0005, 10, 0, 10,0, False)
+ae = Autoencoder(35, hidden_layer, 2, 0.0002)
+ae.train(np.asarray(input_numbers), np.asarray(output_numbers), 15000, 0.0005, 10, 5, 10,0.1, True)
 
 outputs = []
 latent_space = []
